@@ -8,32 +8,46 @@
 import SwiftUI
 
 struct AnimalListItemView: View {
-    var body: some View {
-        HStack (alignment: .center, spacing: 16) {
-            Image("lion")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 90, height: 90)
-                .clipShape(
-                    RoundedRectangle(cornerRadius: 12)
-                )
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Lion")
-                    .font(.title)
-                    .fontWeight(.heavy)
-                    .foregroundColor(.accentColor)
-                
-                Text("King of the Jungle and King of the Wild, also known as the African Lion. The lion is the largest cat species, with a body length of up to 2.5 meters (8.2 feet) and a weight of up to 200 kilograms (440 pounds).")
-                    .font(.footnote)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(3)
-                    .padding(.trailing, 8)
-            }
-        }//: Hstack
-    }
+  // MARK: - PROPERTIES
+  
+    let animal: AnimalModel
+  // MARK: - BODY
+
+  var body: some View {
+    HStack(alignment: .center, spacing: 16) {
+      Image(animal.image)
+        .resizable()
+        .scaledToFill()
+        .frame(width: 90, height: 90)
+        .clipShape(
+          RoundedRectangle(cornerRadius: 12)
+        )
+      
+      VStack(alignment: .leading, spacing: 8) {
+        Text(animal.name)
+          .font(.title2)
+          .fontWeight(.heavy)
+          .foregroundColor(.accentColor)
+        
+        Text(animal.headline)
+          .font(.footnote)
+          .multilineTextAlignment(.leading)
+          .lineLimit(2)
+          .padding(.trailing, 8)
+      } //: VSTACK
+    } //: HSTACK
+  }
 }
 
-#Preview(traits: .sizeThatFitsLayout) {
-    AnimalListItemView()
-        .padding()
+// MARK: - PREVIEW
+
+struct AnimalListItemView_Previews: PreviewProvider {
+    static let animals: [AnimalModel] = Bundle.main.decode("animals.json")
+  
+  static var previews: some View {
+    AnimalListItemView(animal: animals[1])
+      .previewLayout(.sizeThatFits)
+      .padding()
+  }
 }
+
