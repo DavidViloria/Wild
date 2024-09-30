@@ -52,10 +52,17 @@ struct AnimalDetailView: View {
                 //Map
                 Group{
                     HeadingView(headerImage: "map", headerText: "National Parks")
+                    InsetMapView()
+                }
+                .padding(.horizontal)
+                //Link
+                
+                Group{
+                    HeadingView(headerImage: "books.vertical", headerText: "Learn more about \(animal.name)")
                 }
                 .padding(.horizontal)
                 
-                //Descrption
+                //Description
                 Group{
                     HeadingView(headerImage: "info.circle", headerText: "All about \(animal.name)")
                     
@@ -65,7 +72,7 @@ struct AnimalDetailView: View {
                         .padding()
                 }
                 .padding(.horizontal)
-                //Link
+                
             }
             .navigationTitle("Learn About \(animal.name)")
             .navigationBarTitleDisplayMode(.inline)
