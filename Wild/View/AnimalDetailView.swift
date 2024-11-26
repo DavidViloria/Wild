@@ -12,7 +12,7 @@ struct AnimalDetailView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false){
-            VStack(alignment: .center, spacing: 20){
+            LazyVStack(alignment: .center, spacing: 20){
                 //Hero image
                 Image(animal.image)
                     .resizable()
@@ -55,22 +55,25 @@ struct AnimalDetailView: View {
                     InsetMapView()
                 }
                 .padding(.horizontal)
-                //Link
-                
-                Group{
-                    HeadingView(headerImage: "books.vertical", headerText: "Learn more about \(animal.name)")
-                }
-                .padding(.horizontal)
+               
                 
                 //Description
                 Group{
                     HeadingView(headerImage: "info.circle", headerText: "All about \(animal.name)")
-                    
                     Text(animal.description)
                         .multilineTextAlignment(.leading)
                         .layoutPriority(1)
                         .padding()
                 }
+                .padding(.horizontal)
+                
+                //Link
+                Group{
+                    HeadingView(headerImage: "books.vertical", headerText: "Learn more about \(animal.name)")
+                    ExternalWebLinkView(animal: animal)
+                    
+                }
+                .padding()
                 .padding(.horizontal)
                 
             }
