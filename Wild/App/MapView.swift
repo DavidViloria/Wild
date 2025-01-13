@@ -31,7 +31,7 @@ struct MapView: View {
       }) //: Map
       .overlay(
         HStack(alignment: .center, spacing: 12) {
-          Image("compass")
+          Image("logo")
             .resizable()
             .scaledToFit()
             .frame(width: 48, height: 48, alignment: .center)

@@ -19,18 +19,18 @@ struct MapAnnotationView: View {
     ZStack {
       Circle()
         .fill(Color.accentColor)
-        .frame(width: 54, height: 54, alignment: .center)
+        .frame(width: 42, height: 42, alignment: .center)
       
       Circle()
         .stroke(Color.accentColor, lineWidth: 2)
-        .frame(width: 52, height: 52, alignment: .center)
+        .frame(width: 42, height: 42, alignment: .center)
         .scaleEffect(1 + CGFloat(animation))
         .opacity(1 - animation)
       
       Image(location.image)
         .resizable()
         .scaledToFit()
-        .frame(width: 48, height: 48, alignment: .center)
+        .frame(width: 32, height: 32, alignment: .center)
         .clipShape(Circle())
     } //: ZSTACK
     .onAppear {
