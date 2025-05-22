@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var isGridViewActive: Bool = false
     let animal: [AnimalModel] = Bundle.main.decode("animals.json")
     let haptics = UIImpactFeedbackGenerator(style: .medium)
-    let gridLayout : [GridItem] = Array(repeating: GridItem(.flexible()), count: 2)
+    @State private var isGridViewActive: Bool = false
+
+    @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
+    @State private var gridColumn: Int = 1
+    @State private var toolbarIcon: String = "circle.grid.2x1"
     
     var body: some View {
         
@@ -31,9 +34,6 @@ struct ContentView: View {
                     AnimalListItemView(animal: animal)
                   } //: LINK
                 } //: LOOP
-                
-//                CreditsView()
-//                  .modifier(CenterModifier())
               } //: LIST
             } else {
               ScrollView(.vertical, showsIndicators: false) {
@@ -69,9 +69,9 @@ struct ContentView: View {
                   print("Grid view is activated")
                   isGridViewActive = true
                   haptics.impactOccurred()
-                  //gridSwitch()
+                  gridSwitch()
                 }) {
-                  Image(systemName: "square.fill.text.grid.1x2")
+                  Image(systemName: toolbarIcon)
                     .font(.title2)
                     .foregroundColor(isGridViewActive ? .accentColor : .primary)
                 }
@@ -80,6 +80,26 @@ struct ContentView: View {
           } //: TOOLBAR
         } //: NAVIGATION
       }
+    
+    
+    // MARK: - Functions
+    
+    func gridSwitch(){
+        gridLayout = Array(repeating: .init(.flexible()), count: gridLayout.count % 3 + 1)
+        gridColumn = gridLayout.count
+        
+        switch gridColumn{
+        case 1:
+            toolbarIcon = "circle.grid.2x1.fill"
+        case 2:
+            toolbarIcon = "circle.grid.2x2.fill"
+        case 3:
+            toolbarIcon = "circle.hexagongrid.fill"
+        default:
+            toolbarIcon = "circle.hexagongrid.fill"
+        }
+        
+    }
 }
 
 #Preview {
