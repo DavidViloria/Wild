@@ -12,15 +12,7 @@ struct GalleryView: View {
     @State private var selectedAnimal: String = "lion"
     
     let animals: [AnimalModel] = Bundle.main.decode("animals.json")
-    let haptics = UIImpactFeedbackGenerator(style: .heavy)
-    //    let gridLayout: [GridItem] = [
-    //        GridItem(.flexible()),
-    //        GridItem(.flexible()),
-    //        GridItem(.flexible())
-    //    ]
-    
-    //    let gridLayout: [GridItem] = Array(repeating: GridItem(.flexible()), count: 3)
-    
+    let haptics = UIImpactFeedbackGenerator(style: .heavy)    
     @State private var gridLayout : [GridItem] = [GridItem(.flexible())]
     @State private var gridColumn: Double = 3.0
     
